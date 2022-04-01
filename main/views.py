@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from .models import Post
 
 
 @login_required(login_url='/login')
 def home(request):
-    return render(request, 'main/home.html')
+    posts = Post.objects.all()
+    return render(request, 'main/home.html', {"posts": posts})
 
 
 @login_required(login_url='/login')
