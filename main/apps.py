@@ -12,7 +12,7 @@ class MainConfig(AppConfig):
 
         def add_to_default_group(sender, **kwargs):
             user = kwargs["instance"]
-            if kwargs["crated"]:
+            if kwargs["created"]:
                 group, ok = Group.objects.get_or_create(name='default')
                 group.user_set.add(user)
 

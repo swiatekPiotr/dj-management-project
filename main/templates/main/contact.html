@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Contact {% endblock %}
+
+{% block content %}
+
+<div class="wpb_wrapper">
+    {% if user.is_authenticated %}
+    {% else %}
+    <h1> If you can't register or login. </h1>
+    {% endif %}
+    <p>&nbsp;</p>
+    <h2> Contact me </h2>
+    <div class="divider-wrap" data-alignment="default">
+        <a style="background-color:#D56945; color: #D56945; font-size: 3px">
+            --------------------------------------------------------------------------------------------------------
+        </a>
+    </div>
+    <div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<h3 style="color: #D56945; font-size: 20px"> Administrator Piotr </h3>
+            <a style="color: gray; font-size: 16px"> piotr@example.com <br></a>
+            <a style="color: gray; font-size: 16px"> Wrocław <br></a>
+            <a style="color: gray; font-size: 16px"> Phone: 78872461 <br></a>
+		</div>
+	</div>
+</div>
+{% endblock %}

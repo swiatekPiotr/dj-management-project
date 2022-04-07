@@ -57,3 +57,7 @@ def sign_up(request):
     else:
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {"form": form})
+
+
+def contact(request):
+    return render(request, 'main/contact.html', {})
