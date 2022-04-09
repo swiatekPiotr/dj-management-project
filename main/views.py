@@ -3,7 +3,7 @@ from .forms import RegisterForm, PostForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
-from .models import Post
+from .models import Post, Comment
 
 
 @login_required(login_url='/login')
@@ -57,6 +57,13 @@ def sign_up(request):
     else:
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {"form": form})
+
+
+def post_comm(request):
+    post_id = request.POST.get("post-id")
+    post = Post.objects.filter(id=post_id).first()
+    comment = Comment.objects.all()
+    return render(request, 'main/post_comm.html', {"post": post})
 
 
 def contact(request):
