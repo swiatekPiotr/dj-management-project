@@ -10,11 +10,17 @@
             <h5 class="card-title"> {{post.title}} </h5>
             <p> {{post.description}} </p>
         </div>
-        <button type="submit" class="btn btn-success"> Add comment </button>
-        {% for comm in comment %}
-        <div class="card-header"><strong> @{{comm.author.username}} </strong> -{{comm.created_at}}</div>
+    </div>
+    <button type="submit" class="btn btn-success"> Add comment </button>
+    <div>
+        {% if comments == None %}
+        <a> comment coming soon </a>
+        {% else %}
+        {% for comm in comments %}
+        <div class="card-header"><strong> @{{comm.author.username}} </strong></div>
         <h5 class="card-title"> {{comm.remark}} </h5>
         {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -62,8 +62,12 @@ def sign_up(request):
 def post_comm(request):
     post_id = request.POST.get("post-id")
     post = Post.objects.filter(id=post_id).first()
-    comment = Comment.objects.all()
-    return render(request, 'main/post_comm.html', {"post": post})
+    comments = Comment.objects.all()
+    context = {
+        "post": post,
+        "comments": comments,
+    }
+    return render(request, 'main/post_comm.html', context)
 
 
 def contact(request):

@@ -30,9 +30,9 @@
         </div>
     </div>
     <div>
-        <form method="POST">
+        <form method="POST"  action="/post-comm/">
             {% csrf_token %}
-            <button class="btn btn-link" name="post-id" value="{{post.id}}"><a href="/post-comm"> comment </a></button>
+            <button class="btn btn-link" name="post-id" value="{{post.id}}"> comment </button>
         </form>
     </div>
 </div>

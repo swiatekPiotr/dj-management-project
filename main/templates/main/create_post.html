@@ -7,7 +7,7 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}{{ form|crispy }}
-
+        <a style="color: gray; font-size: 14px"> * these fields are required <br></a>
         <button type="submit" class="btn btn-success"> Post </button>
     </form>
 {% endblock %}
