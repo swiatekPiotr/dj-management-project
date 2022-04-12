@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, PostForm
+from .forms import RegisterForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User, Group
@@ -62,9 +62,17 @@ def sign_up(request):
 def post_comm(request):
     post_id = request.POST.get("post-id")
     post = Post.objects.filter(id=post_id).first()
-    comments = Comment.objects.all()
+    comments = Comment.objects.filter(post_num_id=post_id)
+    form = CommentForm()
+    if request.method == "POST":
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post_num = post_id
+            form.save()
     context = {
         "post": post,
+        "form": form,
         "comments": comments,
     }
     return render(request, 'main/post_comm.html', context)

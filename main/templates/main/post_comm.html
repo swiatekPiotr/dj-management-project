@@ -11,10 +11,15 @@
             <p> {{post.description}} </p>
         </div>
     </div>
-    <button type="submit" class="btn btn-success"> Add comment </button>
+</div>
+<div>
+    <form method="POST">
+        {% csrf_token %}{{ form.as_table }}
+        <button type="submit" class="btn btn-success"> Add comment </button>
+    </form>
     <div>
-        {% if comments == None %}
-        <a> comment coming soon </a>
+        {% if comments.remark == None %}
+        <p style="color: gray; font-size: 14px"> comments coming soon... </p>
         {% else %}
         {% for comm in comments %}
         <div class="card-header"><strong> @{{comm.author.username}} </strong></div>
