@@ -13,19 +13,19 @@
     </div>
 </div>
 <div>
-    <form method="POST">
-        {% csrf_token %}{{ form.as_table }}
-        <button type="submit" class="btn btn-success"> Add comment </button>
-    </form>
     <div>
-        {% if comments.remark == None %}
-        <p style="color: gray; font-size: 14px"> comments coming soon... </p>
-        {% else %}
+        {% if comments %}
         {% for comm in comments %}
         <div class="card-header"><strong> @{{comm.author.username}} </strong></div>
-        <h5 class="card-title"> {{comm.remark}} </h5>
+        <p class="card-title" style="margin-left: 15px;"> {{comm.remark}} </p>
         {% endfor %}
+        {% else %}
+        <p style="color: gray; font-size: 14px"> comments coming soon... </p>
         {% endif %}
     </div>
+    <form method="POST">
+        {% csrf_token %}{{ form }}
+        <button type="submit" class="btn btn-success" name="post-id" value="{{post.id}}"> Add comment </button>
+    </form>
 </div>
 {% endblock %}

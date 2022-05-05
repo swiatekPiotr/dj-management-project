@@ -7,5 +7,5 @@ urlpatterns = [
     path('sign-up/', views.sign_up, name='sign_up'),
     path('create-post/', views.create_post, name='create_post'),
     path('contact/', views.contact, name='contact'),
-    path('post-comm/', views.post_comm, name='post_comm'),
+    path('post-comm/<int:id>/', views.post_comm, name='post_comm'),
 ]

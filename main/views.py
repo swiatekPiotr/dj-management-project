@@ -59,17 +59,19 @@ def sign_up(request):
     return render(request, 'registration/sign_up.html', {"form": form})
 
 
-def post_comm(request):
-    post_id = request.POST.get("post-id")
-    post = Post.objects.filter(id=post_id).first()
-    comments = Comment.objects.filter(post_num_id=post_id)
-    form = CommentForm()
+def post_comm(request, id):
+    post = Post.objects.get(id=id)
+    comments = Comment.objects.filter(post_num_id=post.id)
     if request.method == "POST":
+        form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
-            comment.post_num = post_id
+            comment.post_num = post
             form.save()
+            return redirect('/post-comm/' + str(id))
+    else:
+        form = CommentForm()
     context = {
         "post": post,
         "form": form,

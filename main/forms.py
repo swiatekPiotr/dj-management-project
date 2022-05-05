@@ -22,3 +22,5 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['remark']
+        labels = {'remark': ''}
+        widgets = {'remark': forms.TextInput(attrs={'placeholder': 'Fill it your comment'})}

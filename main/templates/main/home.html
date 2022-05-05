@@ -30,10 +30,9 @@
         </div>
     </div>
     <div>
-        <form method="POST"  action="/post-comm/">
-            {% csrf_token %}
-            <button class="btn btn-link" name="post-id" value="{{post.id}}"> comment </button>
-        </form>
+        <a class="btn btn-outline-info" style="margin-left: 15px; margin-bottom: 5px;"
+           href="/post-comm/{{ post.id }}"> comment
+        </a>
     </div>
 </div>
 {% empty %}
