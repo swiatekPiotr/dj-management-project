@@ -63,6 +63,11 @@ def post_comm(request, id):
     post = Post.objects.get(id=id)
     comments = Comment.objects.filter(post_num_id=post.id)
     if request.method == "POST":
+        comm_id = request.POST.get("comm-id")
+        if comm_id:
+            comm = Comment.objects.filter(id=comm_id).first()
+            if comm and (comm.author == request.user or request.user.has_perm("main.delete_post")):
+                comm.delete()
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -70,6 +75,7 @@ def post_comm(request, id):
             comment.post_num = post
             form.save()
             return redirect('/post-comm/' + str(id))
+        form = CommentForm()
     else:
         form = CommentForm()
     context = {
